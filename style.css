@@ -819,3 +819,92 @@ body {
     color: #ffffff;
     font-weight: 700;
 }
+
+/* Responsive adjustments for mobile devices */
+@media (max-width: 480px) {
+    .remote-device {
+        width: 300px;
+        height: 600px;
+        padding: 20px 15px;
+    }
+    
+    .screen-container {
+        height: 130px;
+        margin-bottom: 15px;
+    }
+    
+    .button-row-top {
+        margin-bottom: 15px;
+    }
+    
+    .power-btn, .speak-again-btn {
+        width: 44px;
+        height: 44px;
+    }
+    
+    .power-btn svg, .speak-again-btn svg {
+        width: 20px !important;
+        height: 20px !important;
+    }
+    
+    .led-indicator {
+        width: 10px;
+        height: 10px;
+    }
+    
+    .dpad-container {
+        width: 200px;
+        height: 200px;
+        padding: 11px;
+        margin-bottom: 20px;
+    }
+    
+    .btn-up {
+        top: 5px;
+        left: 58px;
+        width: 62px;
+        height: 56px;
+        border-radius: 18px 18px 8px 8px;
+        padding-bottom: 10px;
+    }
+    
+    .btn-down {
+        bottom: 5px;
+        left: 58px;
+        width: 62px;
+        height: 56px;
+        border-radius: 8px 8px 18px 18px;
+        padding-top: 10px;
+    }
+    
+    .btn-left {
+        top: 58px;
+        left: 5px;
+        width: 56px;
+        height: 62px;
+        border-radius: 18px 8px 8px 18px;
+        padding-right: 10px;
+    }
+    
+    .btn-right {
+        top: 58px;
+        right: 5px;
+        width: 56px;
+        height: 62px;
+        border-radius: 8px 18px 18px 8px;
+        padding-left: 10px;
+    }
+    
+    .arrow-svg {
+        width: 26px !important;
+        height: 26px !important;
+    }
+    
+    .dpad-center {
+        top: 58px;
+        left: 58px;
+        width: 62px;
+        height: 62px;
+        padding: 5px;
+    }
+}
