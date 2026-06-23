@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Controle Remoto Divertido - Kids</title>
+    <!-- Google Fonts for playful and clean typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="stars-container" id="starsContainer"></div>
+    <div class="ripple-background" id="rippleBg"></div>
+
+    <main class="app-container">
+        <!-- Floating Soundwaves/Visualizer effect when talking -->
+        <div class="audio-waves" id="audioWaves">
+            <span class="wave-bar"></span>
+            <span class="wave-bar"></span>
+            <span class="wave-bar"></span>
+            <span class="wave-bar"></span>
+            <span class="wave-bar"></span>
+        </div>
+
+        <!-- The Remote Control Device -->
+        <div class="remote-device" id="remoteDevice">
+            <!-- Remote Control Top Notch / IR Blaster -->
+            <div class="ir-blaster"></div>
+
+            <!-- Brand Header -->
+            <header class="remote-header">
+                <span class="brand-logo">★</span>
+                <h1 class="brand-title">KID-CONTROL</h1>
+                <span class="brand-model">3000</span>
+            </header>
+
+            <!-- Screen Area -->
+            <div class="screen-container">
+                <div class="screen-glass">
+                    <div class="screen-top-bar">
+                        <div class="screen-wifi">
+                            <svg viewBox="0 0 24 24" width="16" height="16">
+                                <path fill="currentColor" d="M12 21a2 2 0 1 1-2-2 2 2 0 0 1 2 2zm6-6.4a8.4 8.4 0 0 0-12 0l1.4 1.4a6.4 6.4 0 0 1 9.2 0zM21 10.4a12.6 12.6 0 0 0-18 0l1.4 1.4a10.6 10.6 0 0 1 15.2 0z"/>
+                            </svg>
+                            <span>ONLINE</span>
+                        </div>
+                        <div class="screen-battery">
+                            <span class="battery-text">100%</span>
+                            <div class="battery-icon">
+                                <div class="battery-level"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="screen-display" id="screenDisplay">
+                        <div class="display-default" id="displayDefault">
+                            <div class="display-emoji">🎮</div>
+                            <div class="display-text">APERTE ALGO!</div>
+                        </div>
+                        <div class="display-active" id="displayActive" style="display: none;">
+                            <div class="display-arrow-icon" id="displayArrowIcon">⬆️</div>
+                            <div class="display-text-large" id="displayTextLarge">CIMA</div>
+                        </div>
+                    </div>
+
+                    <div class="screen-footer">
+                        <span class="voice-status" id="voiceStatus">VOZ: LIGADA</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Top Button Row (Power and Mode) -->
+            <div class="button-row-top">
+                <button class="control-btn power-btn active" id="powerBtn" aria-label="Ligar/Desligar Som" title="Ligar/Desligar Som">
+                    <svg viewBox="0 0 24 24" width="22" height="22">
+                        <path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" d="M12 2v10m-6.36-4.64a9 9 0 1 0 12.72 0"/>
+                    </svg>
+                </button>
+                <div class="led-indicator active" id="ledIndicator"></div>
+                <button class="control-btn speak-again-btn" id="speakBtn" aria-label="Repetir Fala" title="Repetir Fala">
+                    <svg viewBox="0 0 24 24" width="22" height="22">
+                        <path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 14h-2v-2h2v2zm0-4h-2V7h2v5z"/>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- D-PAD (Directional Pad) Area -->
+            <div class="dpad-container">
+                <div class="dpad">
+                    <button class="dpad-btn btn-up" id="btnUp" data-dir="cima" aria-label="Cima">
+                        <svg viewBox="0 0 24 24" width="28" height="28" class="arrow-svg">
+                            <path fill="currentColor" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/>
+                        </svg>
+                    </button>
+                    <button class="dpad-btn btn-left" id="btnLeft" data-dir="esquerda" aria-label="Esquerda">
+                        <svg viewBox="0 0 24 24" width="28" height="28" class="arrow-svg">
+                            <path fill="currentColor" d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6z"/>
+                        </svg>
+                    </button>
+                    <div class="dpad-center">
+                        <div class="dpad-center-inner"></div>
+                    </div>
+                    <button class="dpad-btn btn-right" id="btnRight" data-dir="direita" aria-label="Direita">
+                        <svg viewBox="0 0 24 24" width="28" height="28" class="arrow-svg">
+                            <path fill="currentColor" d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/>
+                        </svg>
+                    </button>
+                    <button class="dpad-btn btn-down" id="btnDown" data-dir="baixo" aria-label="Baixo">
+                        <svg viewBox="0 0 24 24" width="28" height="28" class="arrow-svg">
+                            <path fill="currentColor" d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6z"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Bottom Panel: Volume and Branding Details -->
+            <div class="bottom-panel">
+                <div class="volume-control">
+                    <span class="vol-icon">🔈</span>
+                    <input type="range" id="volumeSlider" class="volume-slider" min="0" max="1" step="0.1" value="1" aria-label="Volume da Voz">
+                    <span class="vol-icon">🔊</span>
+                </div>
+
+                <!-- Decorative Speaker Grill -->
+                <div class="speaker-grill">
+                    <span class="grill-bar"></span>
+                    <span class="grill-bar"></span>
+                    <span class="grill-bar"></span>
+                    <span class="grill-bar"></span>
+                    <span class="grill-bar"></span>
+                    <span class="grill-bar"></span>
+                    <span class="grill-bar"></span>
+                    <span class="grill-bar"></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- External Instructions Panel -->
+        <section class="instructions-panel">
+            <h2>💡 Como Usar</h2>
+            <ul>
+                <li>Clique nas <strong>setas coloridas</strong> no controle na tela ou use as <strong>setas do teclado (⬆️ ⬇️ ⬅️ ➡️)</strong>.</li>
+                <li>O controle vai falar a direção <strong>bem alto</strong> no alto-falante.</li>
+                <li>Use o botão <strong>Power (🔴)</strong> para ligar/desligar o som.</li>
+                <li>Use a barra no rodapé do controle para ajustar o <strong>volume</strong> da voz.</li>
+                <li>Clique no botão <strong>Informação (🛈)</strong> no topo direito para repetir a última direção.</li>
+            </ul>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
